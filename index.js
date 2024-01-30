@@ -36,7 +36,6 @@ async function run() {
       const newToy = req.body;
       const result = await allToys.insertOne(newToy);
       res.json(result);
-      console.log(newToy);
     });
     app.get("/allToysData", async (req, res) => {
       const cursor = allToys.find({});
@@ -54,8 +53,14 @@ async function run() {
       const cursor = allToys.find({ ToyCategory: Category });
       const result = await cursor.toArray();
       res.send(result);
+    });
 
-      console.log(Category);
+    app.get("allToysData", async (req, res) => {
+      const data = req.query.SellerContact;
+      console.log(data);
+      const cursor = allToys.find({ SellerContact: data });
+      const result = await cursor.toArray();
+      res.send(result);
     });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
