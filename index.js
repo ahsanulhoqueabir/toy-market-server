@@ -55,9 +55,9 @@ async function run() {
       res.send(result);
     });
 
-    app.get("allToysData", async (req, res) => {
-      const data = req.query.SellerContact;
-      console.log(data);
+    app.get("/UsersToysData", async (req, res) => {
+      const data = req.query.Contact;
+      // console.log(data);
       const cursor = allToys.find({ SellerContact: data });
       const result = await cursor.toArray();
       res.send(result);
