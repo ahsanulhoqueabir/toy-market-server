@@ -62,6 +62,20 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+    app.delete("/AllToysData", async (req, res) => {
+      const id = req.query.id;
+      const result = await allToys.deleteOne({ _id: new ObjectId(id) });
+      res.json(result);
+    });
+    app.patch("/UpdatesToyData/:id", async (req, res) => {
+      const ID = req.params.id;
+      const updatedData = await req.body;
+      const result = allToys.updateOne(
+        { _id: new ObjectId(ID) },
+        { $set: updatedData }
+      );
+      res.send(result);
+    });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
