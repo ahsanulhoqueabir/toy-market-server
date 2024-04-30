@@ -5,7 +5,7 @@ const port = process.env.port || 3000;
 require("dotenv").config();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://toy-market-84c26.web.app/"],
+    origin: ["http://localhost:5173", "https://toy-market-84c26.web.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "authorization"],
     credentials: true,
